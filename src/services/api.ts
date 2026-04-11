@@ -17,7 +17,11 @@ const api: AxiosInstance = axios.create({
 api.interceptors.request.use(
   (config) => {
     // 添加认证token
-    const token = localStorage.getItem('auth_token') || localStorage.getItem('jwt_token')
+    const forumToken = localStorage.getItem('jwt_token')
+    if (forumToken) {
+      localStorage.setItem('auth_token', forumToken)
+    }
+    const token = forumToken || localStorage.getItem('auth_token')
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }
@@ -50,7 +54,7 @@ api.interceptors.response.use(
 
       switch (status) {
         case 401: {
-          // 未授权，清除token并跳转到登录页
+          // 只清 docs 本地 token，保留 forum token 作为跨应用登录源
           localStorage.removeItem('auth_token')
           const base = import.meta.env.BASE_URL || '/'
           window.location.href = `${base}login`

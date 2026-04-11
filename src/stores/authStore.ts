@@ -35,6 +35,7 @@ export const useAuthStore = create<AuthState>()(
           
           // 存储token到localStorage
           localStorage.setItem('auth_token', token)
+          localStorage.setItem('jwt_token', token)
           
           set({ 
             user, 
@@ -79,13 +80,12 @@ export const useAuthStore = create<AuthState>()(
       },
 
       refreshUser: async () => {
-        let token = localStorage.getItem('auth_token')
-        if (!token) {
-          const forumToken = localStorage.getItem('jwt_token')
-          if (forumToken) {
-            localStorage.setItem('auth_token', forumToken)
-            token = forumToken
-          }
+        const forumToken = localStorage.getItem('jwt_token')
+        let token = forumToken
+        if (forumToken) {
+          localStorage.setItem('auth_token', forumToken)
+        } else {
+          token = localStorage.getItem('auth_token')
         }
         if (!token) {
           set({ user: null, isAuthenticated: false })
@@ -100,7 +100,7 @@ export const useAuthStore = create<AuthState>()(
             isAuthenticated: true 
           })
         } catch (error) {
-          // Token无效，清除认证状态
+          // 只清 docs 本地 token，保留 forum token 供跨应用 SSO 恢复
           localStorage.removeItem('auth_token')
           set({ 
             user: null, 
@@ -119,6 +119,7 @@ export const useAuthStore = create<AuthState>()(
       setAuth: (user: User, token: string) => {
         // 存储token到localStorage
         localStorage.setItem('auth_token', token)
+        localStorage.setItem('jwt_token', token)
         
         set({ 
           user, 
