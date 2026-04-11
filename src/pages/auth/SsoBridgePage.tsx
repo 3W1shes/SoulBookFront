@@ -10,9 +10,14 @@ const SsoBridgePage: React.FC = () => {
 
   const { token, next } = useMemo(() => {
     const params = new URLSearchParams(window.location.search)
+    const nextParam = params.get('next') || ''
+    const safeNext =
+      nextParam.trim().startsWith('/') && !nextParam.trim().startsWith('//')
+        ? nextParam.trim()
+        : ''
     return {
       token: params.get('token') || '',
-      next: params.get('next') || '',
+      next: safeNext,
     }
   }, [])
 
