@@ -1,6 +1,2 @@
-target/
-.dx-session/
-dist/
-node_modules/
+node_modules
 .env
-*.log
