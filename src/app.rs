@@ -1,8 +1,12 @@
 use crate::routes::Route;
 use crate::state::AuthState;
 use dioxus::prelude::*;
+use dioxus::router::components::HistoryProvider;
+use dioxus::web::WebHistory;
+use std::rc::Rc;
 
 const GLOBAL_CSS: &str = include_str!("../assets/style.css");
+const DOCS_BASE_PATH: &str = "/docs";
 
 #[component]
 pub fn App() -> Element {
@@ -26,6 +30,9 @@ pub fn App() -> Element {
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
             "#
         }
-        Router::<Route> {}
+        HistoryProvider {
+            history: |_| Rc::new(WebHistory::new(Some(DOCS_BASE_PATH.to_string()), true)) as Rc<dyn History>,
+            Router::<Route> {}
+        }
     }
 }
