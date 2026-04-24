@@ -43,7 +43,7 @@ pub fn Tags() -> Element {
     };
 
     rsx! {
-        document::Title { "标签管理 — SoulDoc" }
+        document::Title { "标签管理 — SoulBook" }
         div { class: "page-content",
             div { class: "page-header",
                 div { class: "page-header-left",

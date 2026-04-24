@@ -63,7 +63,7 @@ pub fn Members() -> Element {
     };
 
     rsx! {
-        document::Title { "成员权限 — SoulDoc" }
+        document::Title { "成员权限 — SoulBook" }
         div { class: "page-content",
             div { class: "page-header",
                 div { class: "page-header-left",

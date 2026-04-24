@@ -25,12 +25,13 @@ use gloo_net::http::Request;
 use gloo_storage::{LocalStorage, Storage};
 use serde::{de::DeserializeOwned, Serialize};
 
-const TOKEN_KEY: &str = "souldoc_token";
+const TOKEN_KEY: &str = "soulbook_token";
 pub const BASE_URL: &str = "";
 
 pub fn get_token() -> Option<String> {
     LocalStorage::get::<String>(TOKEN_KEY)
         .ok()
+        .or_else(|| LocalStorage::get::<String>("souldoc_token").ok())
         .or_else(|| LocalStorage::get::<String>("jwt_token").ok())
         .or_else(|| LocalStorage::get::<String>("auth_token").ok())
         .or_else(|| LocalStorage::get::<String>("token").ok())

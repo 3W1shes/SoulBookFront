@@ -55,7 +55,7 @@ pub fn ChangeRequests() -> Element {
     };
 
     rsx! {
-        document::Title { "变更请求 — SoulDoc" }
+        document::Title { "变更请求 — SoulBook" }
         div { class: "page-content",
             div { class: "page-header",
                 div { class: "page-header-left",

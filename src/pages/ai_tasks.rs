@@ -60,7 +60,7 @@ pub fn AiTasks() -> Element {
     };
 
     rsx! {
-        document::Title { "AI 任务中心 — SoulDoc" }
+        document::Title { "AI 任务中心 — SoulBook" }
         div { class: "page-content",
             div { class: "page-header",
                 div { class: "page-header-left",

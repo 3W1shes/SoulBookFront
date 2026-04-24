@@ -84,7 +84,7 @@ pub fn Docs() -> Element {
     };
 
     rsx! {
-        document::Title { "文档中心 — SoulDoc" }
+        document::Title { "文档中心 — SoulBook" }
 
         // Create doc modal
         if show_create() {

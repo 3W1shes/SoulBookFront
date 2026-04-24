@@ -101,7 +101,7 @@ pub fn Files() -> Element {
     };
 
     rsx! {
-        document::Title { "文件管理 — SoulDoc" }
+        document::Title { "文件管理 — SoulBook" }
         div { class: "page-content",
             div { class: "page-header",
                 div { class: "page-header-left",

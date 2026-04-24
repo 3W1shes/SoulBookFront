@@ -16,12 +16,12 @@ pub fn Spaces() -> Element {
     let mut creating = use_signal(|| false);
 
     use_effect(move || {
-        if LocalStorage::get::<String>("souldoc_open_create_space")
+        if LocalStorage::get::<String>("soulbook_open_create_space")
             .ok()
             .as_deref()
             == Some("1")
         {
-            LocalStorage::delete("souldoc_open_create_space");
+            LocalStorage::delete("soulbook_open_create_space");
             show_create.set(true);
         }
     });
@@ -55,7 +55,7 @@ pub fn Spaces() -> Element {
     };
 
     rsx! {
-        document::Title { "知识空间 — SoulDoc" }
+        document::Title { "知识空间 — SoulBook" }
         div { class: "page-content",
             div { class: "page-header",
                 div { class: "page-header-left",

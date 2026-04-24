@@ -35,7 +35,7 @@ pub fn Templates() -> Element {
     };
 
     rsx! {
-        document::Title { "模板中心 — SoulDoc" }
+        document::Title { "模板中心 — SoulBook" }
         div { class: "page-content",
             div { class: "page-header",
                 div { class: "page-header-left",

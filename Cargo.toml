@@ -1,5 +1,5 @@
 [package]
-name = "souldoc_ui"
+name = "soulbook_ui"
 version = "0.1.0"
 edition = "2021"
 
@@ -16,3 +16,13 @@ web-sys = { version = "0.3", features = ["Window", "Storage"] }
 [profile.release]
 opt-level = "z"
 lto = true
+
+[profile.wasm-dev]
+inherits = "dev"
+opt-level = 1
+
+[profile.server-dev]
+inherits = "dev"
+
+[profile.android-dev]
+inherits = "dev"

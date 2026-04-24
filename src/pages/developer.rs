@@ -23,7 +23,7 @@ pub fn Developer() -> Element {
     let mut action_msg = use_signal(|| String::new());
 
     rsx! {
-        document::Title { "开发者平台 — SoulDoc" }
+        document::Title { "开发者平台 — SoulBook" }
         div { class: "page-content",
             div { class: "page-header",
                 div { class: "page-header-left",
@@ -150,13 +150,13 @@ pub fn Developer() -> Element {
                             div { style: "text-align:center;padding:60px;color:var(--muted);",
                                 div { style: "font-size:48px;margin-bottom:12px;", "🔑" }
                                 h3 { "暂无 API 密钥" }
-                                p { style: "font-size:13px;margin-bottom:20px;", "创建 API 密钥以通过编程方式访问 SoulDoc" }
+                                p { style: "font-size:13px;margin-bottom:20px;", "创建 API 密钥以通过编程方式访问 SoulBook" }
                                 button { class: "btn btn-primary", onclick: move |_| show_create_key.set(true), "＋ 创建第一个 API 密钥" }
                             }
                             div { class: "card",
                                 div { class: "card-header", h3 { "快速开始" } }
                                 div { class: "terminal",
-                                    div { class: "terminal-line cmd", "npm install @souldoc/sdk" }
+                                    div { class: "terminal-line cmd", "npm install @soulbook/sdk" }
                                 }
                             }
                         }
@@ -240,7 +240,7 @@ pub fn Developer() -> Element {
                 div { class: "card",
                     div { class: "card-header", h3 { "能力清单（Capability Manifest）" } }
                     p { style: "font-size:13px;color:var(--muted);margin-bottom:14px;",
-                        "公开访问地址：" code { style: "font-size:12px;background:var(--panel3);padding:2px 7px;border-radius:5px;", "/.well-known/souldoc-manifest.json" }
+                        "公开访问地址：" code { style: "font-size:12px;background:var(--panel3);padding:2px 7px;border-radius:5px;", "/.well-known/soulbook-manifest.json" }
                     }
                     match &*manifest_res.read() {
                         Some(Ok(manifest)) => rsx! {

@@ -1,7 +1,7 @@
 use crate::models::User;
 use gloo_storage::{LocalStorage, Storage};
 
-const TOKEN_KEY: &str = "souldoc_token";
+const TOKEN_KEY: &str = "soulbook_token";
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct AuthState {
@@ -13,6 +13,7 @@ impl AuthState {
     pub fn init() -> Self {
         let token = LocalStorage::get::<String>(TOKEN_KEY)
             .ok()
+            .or_else(|| LocalStorage::get::<String>("souldoc_token").ok())
             .or_else(|| LocalStorage::get::<String>("jwt_token").ok())
             .or_else(|| LocalStorage::get::<String>("auth_token").ok())
             .or_else(|| LocalStorage::get::<String>("token").ok());
@@ -21,12 +22,14 @@ impl AuthState {
 
     pub fn login(&mut self, token: String, user: User) {
         LocalStorage::set(TOKEN_KEY, &token).ok();
+        LocalStorage::set("souldoc_token", &token).ok();
         self.token = Some(token);
         self.user = Some(user);
     }
 
     pub fn logout(&mut self) {
         LocalStorage::delete(TOKEN_KEY);
+        LocalStorage::delete("souldoc_token");
         self.token = None;
         self.user = None;
     }
